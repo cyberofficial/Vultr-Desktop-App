@@ -27,6 +27,7 @@ Public Class MainApp
         Dim balance, pending_charges, last_payment_date, last_payment_amount As String
         Dim output As String
 
+        ' Starts a silent cmd request using open sour curl
         Dim process As System.Diagnostics.Process = New System.Diagnostics.Process()
         Dim startInfo As System.Diagnostics.ProcessStartInfo = New System.Diagnostics.ProcessStartInfo With {
             .CreateNoWindow = True,
@@ -39,6 +40,9 @@ Public Class MainApp
         process.Start()
         output = process.StandardOutput.ReadToEnd()
         process.WaitForExit()
+
+
+        ' Fills in the information
 
         Try
             Dim rawresp As String
@@ -69,11 +73,9 @@ Public Class MainApp
     End Sub
     Private Sub Products_Refresh_Click(sender As Object, e As EventArgs) Handles Products_Refresh.Click
 
-        ' Sets the API list strings
-
+        ' Grabs The products from the api
 
         Dim output As String
-
         Dim process As System.Diagnostics.Process = New System.Diagnostics.Process()
         Dim startInfo As System.Diagnostics.ProcessStartInfo = New System.Diagnostics.ProcessStartInfo With {
             .CreateNoWindow = True,
@@ -85,73 +87,74 @@ Public Class MainApp
         process.StartInfo = startInfo
         process.Start()
         output = process.StandardOutput.ReadToEnd()
-        Clipboard.SetText(output)
+        ' Debug Purposes
+        ' Clipboard.SetText(output)
         process.WaitForExit()
 
         Try
+            ' Clear the tab pages when you refresh
             prod_tabs.TabPages.Clear()
-
-
         Catch ex As Exception
             MessageBox.Show("Final Error 1")
         End Try
 
 
-        'Try
-        Dim Count As Integer
+        ' Export the json out put to readable formats
+        ' Creates new tabs for each product
+        Try
+            Dim Count As Integer
             Dim json = output
             Dim reports = JsonConvert.DeserializeObject(Of Dictionary(Of String, ReportData))(json)
-        For Each pair In reports
+            For Each pair In reports
+                Dim NewTab As New TabPage
+                NewTab.Name = $"{pair.Key}"
+                NewTab.Text = NewTab.Name
+                Count += 1
+                prod_tabs.Controls.Add(NewTab)
 
-            Dim NewTab As New TabPage
-            NewTab.Name = $"{pair.Key}"
-            NewTab.Text = NewTab.Name
-            Count += 1
-            prod_tabs.Controls.Add(NewTab)
+                Dim Data As New TextBox With {
+                    .[ReadOnly] = True,
+                    .Multiline = True,
+                    .Dock = DockStyle.Fill,
+                    .Font = New Font("Microsoft Sans Serif", 13),
+                    .ScrollBars = ScrollBars.Vertical
+                }
+                Dim fontName As FontFamily = Data.Font.FontFamily
+                Data.Text &= "Operating System: " & $"{pair.Value.os}"
+                Data.Text &= Environment.NewLine & "Ram: " & $"{pair.Value.ram}"
+                Data.Text &= Environment.NewLine & "Main IP: " & $"{pair.Value.main_ip}"
+                Data.Text &= Environment.NewLine & "Virtual CPU Count: " & $"{pair.Value.vcpu_count}"
+                Data.Text &= Environment.NewLine & "Server Location: " & $"{pair.Value.location}"
+                Data.Text &= Environment.NewLine & "DCID: " & $"{pair.Value.DCID}"
+                Data.Text &= Environment.NewLine & "Machine Default Password: " & $"{pair.Value.default_password}"
+                Data.Text &= Environment.NewLine & "Date Created: " & $"{pair.Value.date_created}"
+                Data.Text &= Environment.NewLine & "Pending Charges: $" & $"{pair.Value.pending_charges}"
+                Data.Text &= Environment.NewLine & "Status: " & $"{pair.Value.status}"
+                Data.Text &= Environment.NewLine & "Cost Per Month: $" & $"{pair.Value.cost_per_month}"
+                Data.Text &= Environment.NewLine & "Current Bandwidth GB: " & $"{pair.Value.current_bandwidth_gb}" & " GB"
+                Data.Text &= Environment.NewLine & "Allowed Bandwidth GB: " & $"{pair.Value.allowed_bandwidth_gb}" & " GB"
+                Data.Text &= Environment.NewLine & "Gateway V4: " & $"{pair.Value.gateway_v4}"
+                Data.Text &= Environment.NewLine & "Power Status: " & $"{pair.Value.power_status}"
+                Data.Text &= Environment.NewLine & "Server State: " & $"{pair.Value.server_state}"
+                Data.Text &= Environment.NewLine & "VPS Plan ID: " & $"{pair.Value.VPSPLANID}"
+                Data.Text &= Environment.NewLine & "V6 Main IP: " & $"{pair.Value.v6_main_ip}"
+                Data.Text &= Environment.NewLine & "V6 Network: " & $"{pair.Value.v6_network}"
+                Data.Text &= Environment.NewLine & "V6 Networks: " & $"{pair.Value.v6_networks}"
+                Data.Text &= Environment.NewLine & "Label: " & $"{pair.Value.label}"
+                Data.Text &= Environment.NewLine & "Internal IP: " & $"{pair.Value.internal_ip}"
+                Data.Text &= Environment.NewLine & "KVM URL: " & $"{pair.Value.kvm_url}"
+                Data.Text &= Environment.NewLine & "Auto Backups: " & $"{pair.Value.auto_backups}"
+                Data.Text &= Environment.NewLine & "Tags: " & $"{pair.Value.tag}"
+                Data.Text &= Environment.NewLine & "OSID: " & $"{pair.Value.OSID}"
+                Data.Text &= Environment.NewLine & "APPID: " & $"{pair.Value.APPID}"
+                Data.Text &= Environment.NewLine & "Firewall Group ID: " & $"{pair.Value.FIREWALLGROUPID}"
+                NewTab.Controls.Add(Data)
+                prod_tabs.SelectedIndex = prod_tabs.TabCount - 1
 
-            Dim Data As New TextBox With {
-                .[ReadOnly] = True,
-                .Multiline = True,
-                .Dock = DockStyle.Fill,
-                .Font = New Font("Microsoft Sans Serif", 13),
-                .ScrollBars = ScrollBars.Vertical
-            }
-            Dim fontName As FontFamily = Data.Font.FontFamily
-            Data.Text &= "Operating System: " & $"{pair.Value.os}"
-            Data.Text &= Environment.NewLine & "Ram: " & $"{pair.Value.ram}"
-            Data.Text &= Environment.NewLine & "Main IP: " & $"{pair.Value.main_ip}"
-            Data.Text &= Environment.NewLine & "Virtual CPU Count: " & $"{pair.Value.vcpu_count}"
-            Data.Text &= Environment.NewLine & "Server Location: " & $"{pair.Value.location}"
-            Data.Text &= Environment.NewLine & "DCID: " & $"{pair.Value.DCID}"
-            Data.Text &= Environment.NewLine & "Machine Default Password: " & $"{pair.Value.default_password}"
-            Data.Text &= Environment.NewLine & "Date Created: " & $"{pair.Value.date_created}"
-            Data.Text &= Environment.NewLine & "Pending Charges: $" & $"{pair.Value.pending_charges}"
-            Data.Text &= Environment.NewLine & "Status: " & $"{pair.Value.status}"
-            Data.Text &= Environment.NewLine & "Cost Per Month: $" & $"{pair.Value.cost_per_month}"
-            Data.Text &= Environment.NewLine & "Current Bandwidth GB: " & $"{pair.Value.current_bandwidth_gb}" & " GB"
-            Data.Text &= Environment.NewLine & "Allowed Bandwidth GB: " & $"{pair.Value.allowed_bandwidth_gb}" & " GB"
-            Data.Text &= Environment.NewLine & "Gateway V4: " & $"{pair.Value.gateway_v4}"
-            Data.Text &= Environment.NewLine & "Power Status: " & $"{pair.Value.power_status}"
-            Data.Text &= Environment.NewLine & "Server State: " & $"{pair.Value.server_state}"
-            Data.Text &= Environment.NewLine & "VPS Plan ID: " & $"{pair.Value.VPSPLANID}"
-            Data.Text &= Environment.NewLine & "V6 Main IP: " & $"{pair.Value.v6_main_ip}"
-            Data.Text &= Environment.NewLine & "V6 Network: " & $"{pair.Value.v6_network}"
-            Data.Text &= Environment.NewLine & "V6 Networks: " & $"{pair.Value.v6_networks}"
-            Data.Text &= Environment.NewLine & "Label: " & $"{pair.Value.label}"
-            Data.Text &= Environment.NewLine & "Internal IP: " & $"{pair.Value.internal_ip}"
-            Data.Text &= Environment.NewLine & "KVM URL: " & $"{pair.Value.kvm_url}"
-            Data.Text &= Environment.NewLine & "Auto Backups: " & $"{pair.Value.auto_backups}"
-            Data.Text &= Environment.NewLine & "Tags: " & $"{pair.Value.tag}"
-            Data.Text &= Environment.NewLine & "OSID: " & $"{pair.Value.OSID}"
-            Data.Text &= Environment.NewLine & "APPID: " & $"{pair.Value.APPID}"
-            Data.Text &= Environment.NewLine & "Firewall Group ID: " & $"{pair.Value.FIREWALLGROUPID}"
-            NewTab.Controls.Add(Data)
-            prod_tabs.SelectedIndex = prod_tabs.TabCount - 1
-
-        Next
-        'Catch ex As Exception
-        '    MessageBox.Show("Final Error 2")
-        'End Try
+            Next
+        Catch ex As Exception
+            MessageBox.Show("Final Error 2")
+        End Try
 
 
 
@@ -159,6 +162,8 @@ Public Class MainApp
 End Class
 
 Public Class ReportData
+    ' Class data for json data
+
     <JsonProperty("VM_ID")>
     Public Property VM_ID As String
     Public Property os As String
