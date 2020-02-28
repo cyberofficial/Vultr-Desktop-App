@@ -26,7 +26,7 @@ Partial Class MainApp
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.LogIn_Btn = New System.Windows.Forms.Button()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
-        Me.Refresh_Btn = New System.Windows.Forms.Button()
+        Me.Payments_Refresh = New System.Windows.Forms.Button()
         Me.VM_Tabs = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.LastPA = New System.Windows.Forms.Label()
@@ -37,10 +37,14 @@ Partial Class MainApp
         Me.Label2 = New System.Windows.Forms.Label()
         Me.balance_txt = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
+        Me.TabPage2 = New System.Windows.Forms.TabPage()
+        Me.Products_Refresh = New System.Windows.Forms.Button()
+        Me.prod_tabs = New System.Windows.Forms.TabControl()
         Me.Panel1.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.VM_Tabs.SuspendLayout()
         Me.TabPage1.SuspendLayout()
+        Me.TabPage2.SuspendLayout()
         Me.SuspendLayout()
         '
         'Panel1
@@ -78,21 +82,22 @@ Partial Class MainApp
         Me.PictureBox1.TabIndex = 1
         Me.PictureBox1.TabStop = False
         '
-        'Refresh_Btn
+        'Payments_Refresh
         '
-        Me.Refresh_Btn.AutoSize = True
-        Me.Refresh_Btn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.Refresh_Btn.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!)
-        Me.Refresh_Btn.Location = New System.Drawing.Point(6, 6)
-        Me.Refresh_Btn.Name = "Refresh_Btn"
-        Me.Refresh_Btn.Size = New System.Drawing.Size(95, 27)
-        Me.Refresh_Btn.TabIndex = 2
-        Me.Refresh_Btn.Text = "Refresh Info"
-        Me.Refresh_Btn.UseVisualStyleBackColor = True
+        Me.Payments_Refresh.AutoSize = True
+        Me.Payments_Refresh.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.Payments_Refresh.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!)
+        Me.Payments_Refresh.Location = New System.Drawing.Point(6, 3)
+        Me.Payments_Refresh.Name = "Payments_Refresh"
+        Me.Payments_Refresh.Size = New System.Drawing.Size(95, 27)
+        Me.Payments_Refresh.TabIndex = 2
+        Me.Payments_Refresh.Text = "Refresh Info"
+        Me.Payments_Refresh.UseVisualStyleBackColor = True
         '
         'VM_Tabs
         '
         Me.VM_Tabs.Controls.Add(Me.TabPage1)
+        Me.VM_Tabs.Controls.Add(Me.TabPage2)
         Me.VM_Tabs.Dock = System.Windows.Forms.DockStyle.Fill
         Me.VM_Tabs.Location = New System.Drawing.Point(100, 0)
         Me.VM_Tabs.Name = "VM_Tabs"
@@ -110,7 +115,7 @@ Partial Class MainApp
         Me.TabPage1.Controls.Add(Me.Label2)
         Me.TabPage1.Controls.Add(Me.balance_txt)
         Me.TabPage1.Controls.Add(Me.Label1)
-        Me.TabPage1.Controls.Add(Me.Refresh_Btn)
+        Me.TabPage1.Controls.Add(Me.Payments_Refresh)
         Me.TabPage1.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!)
         Me.TabPage1.Location = New System.Drawing.Point(4, 22)
         Me.TabPage1.Name = "TabPage1"
@@ -200,6 +205,41 @@ Partial Class MainApp
         Me.Label1.TabIndex = 3
         Me.Label1.Text = "Balance: "
         '
+        'TabPage2
+        '
+        Me.TabPage2.Controls.Add(Me.prod_tabs)
+        Me.TabPage2.Controls.Add(Me.Products_Refresh)
+        Me.TabPage2.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage2.Name = "TabPage2"
+        Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage2.Size = New System.Drawing.Size(616, 583)
+        Me.TabPage2.TabIndex = 1
+        Me.TabPage2.Text = "Products"
+        Me.TabPage2.UseVisualStyleBackColor = True
+        '
+        'Products_Refresh
+        '
+        Me.Products_Refresh.AutoSize = True
+        Me.Products_Refresh.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.Products_Refresh.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!)
+        Me.Products_Refresh.Location = New System.Drawing.Point(6, 3)
+        Me.Products_Refresh.Name = "Products_Refresh"
+        Me.Products_Refresh.Size = New System.Drawing.Size(95, 27)
+        Me.Products_Refresh.TabIndex = 2
+        Me.Products_Refresh.Text = "Refresh Info"
+        Me.Products_Refresh.UseVisualStyleBackColor = True
+        '
+        'prod_tabs
+        '
+        Me.prod_tabs.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.prod_tabs.Location = New System.Drawing.Point(6, 36)
+        Me.prod_tabs.Name = "prod_tabs"
+        Me.prod_tabs.SelectedIndex = 0
+        Me.prod_tabs.Size = New System.Drawing.Size(602, 544)
+        Me.prod_tabs.TabIndex = 3
+        '
         'MainApp
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -219,6 +259,8 @@ Partial Class MainApp
         Me.VM_Tabs.ResumeLayout(False)
         Me.TabPage1.ResumeLayout(False)
         Me.TabPage1.PerformLayout()
+        Me.TabPage2.ResumeLayout(False)
+        Me.TabPage2.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -226,7 +268,7 @@ Partial Class MainApp
     Friend WithEvents Panel1 As Panel
     Friend WithEvents PictureBox1 As PictureBox
     Friend WithEvents LogIn_Btn As Button
-    Friend WithEvents Refresh_Btn As Button
+    Friend WithEvents Payments_Refresh As Button
     Friend WithEvents VM_Tabs As TabControl
     Friend WithEvents TabPage1 As TabPage
     Friend WithEvents LastPA As Label
@@ -237,4 +279,7 @@ Partial Class MainApp
     Friend WithEvents Label2 As Label
     Friend WithEvents balance_txt As Label
     Friend WithEvents Label1 As Label
+    Friend WithEvents TabPage2 As TabPage
+    Friend WithEvents Products_Refresh As Button
+    Friend WithEvents prod_tabs As TabControl
 End Class
