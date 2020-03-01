@@ -16,17 +16,13 @@ Public Class MainApp
         ' Loads the api key on first load.
         Try
             API_Form.API_KEY.Text = My.Settings.API_KEY
-        Catch ex As Exception
-
+        Catch
         End Try
-
     End Sub
     Private Sub Payments_Refresh_Btn_Click(sender As Object, e As EventArgs) Handles Payments_Refresh.Click
-
         ' Sets the API list strings
         Dim balance, pending_charges, last_payment_date, last_payment_amount As String
         Dim output As String
-
         ' Starts a silent cmd request using open sour curl
         Dim process As System.Diagnostics.Process = New System.Diagnostics.Process()
         Dim startInfo As System.Diagnostics.ProcessStartInfo = New System.Diagnostics.ProcessStartInfo With {
@@ -40,10 +36,7 @@ Public Class MainApp
         process.Start()
         output = process.StandardOutput.ReadToEnd()
         process.WaitForExit()
-
-
         ' Fills in the information
-
         Try
             Dim rawresp As String
             rawresp = output
@@ -60,21 +53,49 @@ Public Class MainApp
 
             last_payment_amount = If(jResults("last_payment_amount") Is Nothing, "", jResults("last_payment_amount").ToString())
             LastPA.Text = last_payment_amount
+        Catch ex As Exception
+            ' If errors occur they'll tell the user here.
+            MessageBox.Show(output)
+        End Try
+        ' Sets the API list strings
+        Dim name, email As String
+        Dim output1 As String
+        ' Starts a silent cmd request using open sour curl
+        Dim process1 As System.Diagnostics.Process = New System.Diagnostics.Process()
+        Dim startInfo1 As System.Diagnostics.ProcessStartInfo = New System.Diagnostics.ProcessStartInfo With {
+                .CreateNoWindow = True,
+                .UseShellExecute = False,
+                .RedirectStandardOutput = True,
+                .FileName = "CMD.exe",
+                .Arguments = "/c curl.exe --url https://api.vultr.com/v1/auth/info -H ""API-Key:" & API_Form.API_KEY.Text & """"
+            }
+        process1.StartInfo = startInfo1
+        process1.Start()
+        output1 = process1.StandardOutput.ReadToEnd()
+        ' Debug Purposes
+        ' Clipboard.SetText(output1)
+        process1.WaitForExit()
+        Try
+            Dim rawresp1 As String
+            rawresp1 = output1
+            Dim jResults As Object = JObject.Parse(rawresp1)
 
+            name = If(jResults("name") Is Nothing, "", jResults("name").ToString())
+            name_info.Text = name
+
+            email = If(jResults("email") Is Nothing, "", jResults("email").ToString())
+            email_txt.Text = email
 
         Catch ex As Exception
             ' If errors occur they'll tell the user here.
             MessageBox.Show(output)
         End Try
-
     End Sub
     Private Sub LogIn_Btn_Click(sender As Object, e As EventArgs) Handles LogIn_Btn.Click
         API_Form.ShowDialog()
     End Sub
     Private Sub Products_Refresh_Click(sender As Object, e As EventArgs) Handles Products_Refresh.Click
-
         ' Grabs The products from the api
-
         Dim output As String
         Dim process As System.Diagnostics.Process = New System.Diagnostics.Process()
         Dim startInfo As System.Diagnostics.ProcessStartInfo = New System.Diagnostics.ProcessStartInfo With {
@@ -90,15 +111,12 @@ Public Class MainApp
         ' Debug Purposes
         ' Clipboard.SetText(output)
         process.WaitForExit()
-
         Try
             ' Clear the tab pages when you refresh
             prod_tabs.TabPages.Clear()
         Catch ex As Exception
             MessageBox.Show("Final Error 1")
         End Try
-
-
         ' Export the json out put to readable formats
         ' Creates new tabs for each product
         Try
@@ -155,15 +173,9 @@ Public Class MainApp
         Catch ex As Exception
             MessageBox.Show("Final Error 2")
         End Try
-
-
-
     End Sub
-
     Private Sub AppListRefresh_Click(sender As Object, e As EventArgs) Handles AppListRefresh.Click
-
         ' Grabs The products from the api
-
         Dim output As String
         Dim process As System.Diagnostics.Process = New System.Diagnostics.Process()
         Dim startInfo As System.Diagnostics.ProcessStartInfo = New System.Diagnostics.ProcessStartInfo With {
@@ -171,7 +183,7 @@ Public Class MainApp
             .UseShellExecute = False,
             .RedirectStandardOutput = True,
             .FileName = "CMD.exe",
-            .Arguments = "/c curl.exe --url https://api.vultr.com/v1/app/list"
+            .Arguments = "/c curl.exe --url https://api.vultr.com/v1/server/list -H ""API-Key:" & API_Form.API_KEY.Text & """"
         }
         process.StartInfo = startInfo
         process.Start()
@@ -179,15 +191,12 @@ Public Class MainApp
         ' Debug Purposes
         ' Clipboard.SetText(output)
         process.WaitForExit()
-
         Try
             ' Clear the tab pages when you refresh
             AppListTabs.TabPages.Clear()
         Catch ex As Exception
             MessageBox.Show("Final Error 1")
         End Try
-
-
         ' Export the json out put to readable formats
         ' Creates new tabs for each product
         Try
@@ -215,14 +224,12 @@ Public Class MainApp
                 Data.Text &= Environment.NewLine & "Surcharge Fees: " & $"$ {pair.Value.surcharge}"
                 NewTab.Controls.Add(Data)
                 AppListTabs.SelectedIndex = prod_tabs.TabCount - 1
-
             Next
         Catch ex As Exception
             MessageBox.Show("Final Error 2")
         End Try
     End Sub
 End Class
-
 Public Class ReportData_1
     ' Class data for json data
 
