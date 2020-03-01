@@ -183,7 +183,7 @@ Public Class MainApp
             .UseShellExecute = False,
             .RedirectStandardOutput = True,
             .FileName = "CMD.exe",
-            .Arguments = "/c curl.exe --url https://api.vultr.com/v1/server/list -H ""API-Key:" & API_Form.API_KEY.Text & """"
+            .Arguments = "/c curl.exe --url https://api.vultr.com/v1/app/list"
         }
         process.StartInfo = startInfo
         process.Start()
