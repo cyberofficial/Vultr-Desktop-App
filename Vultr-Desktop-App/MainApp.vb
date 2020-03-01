@@ -7,6 +7,7 @@ Imports System.Windows.Forms
 Imports System.Diagnostics
 Imports System.Collections.Generic
 Imports System.Security.Cryptography
+Imports System.Security.AccessControl
 
 
 
@@ -15,8 +16,14 @@ Public Class MainApp
     Private Sub MainApp_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         ' Loads the api key on first load.
         Try
-            API_Form.API_KEY.Text = My.Settings.API_KEY
+            File.Decrypt("api.key")
+            Dim objReader As StreamReader = New StreamReader("api.key")
+            API_Form.API_KEY.Text = objReader.ReadToEnd()
+            objReader.Close()
+            objReader = Nothing
+            File.Encrypt("api.key")
         Catch
+
         End Try
     End Sub
     Private Sub Payments_Refresh_Btn_Click(sender As Object, e As EventArgs) Handles Payments_Refresh.Click
@@ -55,7 +62,7 @@ Public Class MainApp
             LastPA.Text = last_payment_amount
         Catch ex As Exception
             ' If errors occur they'll tell the user here.
-            MessageBox.Show(output)
+            MessageBox.Show(output & vbNewLine & "Failed to grab payments.")
         End Try
         ' Sets the API list strings
         Dim name, email As String
@@ -88,7 +95,7 @@ Public Class MainApp
 
         Catch ex As Exception
             ' If errors occur they'll tell the user here.
-            MessageBox.Show(output)
+            MessageBox.Show(output & vbNewLine & "Failed to grab name and email.")
         End Try
     End Sub
     Private Sub LogIn_Btn_Click(sender As Object, e As EventArgs) Handles LogIn_Btn.Click

@@ -27,27 +27,26 @@ Partial Class MainApp
         Me.LogIn_Btn = New System.Windows.Forms.Button()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.TabPage3 = New System.Windows.Forms.TabPage()
-        Me.AppListRefresh = New System.Windows.Forms.Button()
         Me.AppListTabs = New System.Windows.Forms.TabControl()
+        Me.AppListRefresh = New System.Windows.Forms.Button()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
-        Me.Products_Refresh = New System.Windows.Forms.Button()
         Me.prod_tabs = New System.Windows.Forms.TabControl()
+        Me.Products_Refresh = New System.Windows.Forms.Button()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
-        Me.Payments_Refresh = New System.Windows.Forms.Button()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.balance_txt = New System.Windows.Forms.Label()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.charges_txt = New System.Windows.Forms.Label()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.LastPDate = New System.Windows.Forms.Label()
-        Me.Label4 = New System.Windows.Forms.Label()
         Me.LastPA = New System.Windows.Forms.Label()
-        Me.VM_Tabs = New System.Windows.Forms.TabControl()
-        Me.API_Test = New System.Windows.Forms.Button()
-        Me.Label5 = New System.Windows.Forms.Label()
-        Me.name_info = New System.Windows.Forms.Label()
-        Me.Label6 = New System.Windows.Forms.Label()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.LastPDate = New System.Windows.Forms.Label()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.charges_txt = New System.Windows.Forms.Label()
+        Me.Label2 = New System.Windows.Forms.Label()
         Me.email_txt = New System.Windows.Forms.Label()
+        Me.name_info = New System.Windows.Forms.Label()
+        Me.balance_txt = New System.Windows.Forms.Label()
+        Me.Label6 = New System.Windows.Forms.Label()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.Payments_Refresh = New System.Windows.Forms.Button()
+        Me.VM_Tabs = New System.Windows.Forms.TabControl()
         Me.Panel1.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPage3.SuspendLayout()
@@ -59,7 +58,6 @@ Partial Class MainApp
         'Panel1
         '
         Me.Panel1.BackColor = System.Drawing.SystemColors.Highlight
-        Me.Panel1.Controls.Add(Me.API_Test)
         Me.Panel1.Controls.Add(Me.LogIn_Btn)
         Me.Panel1.Controls.Add(Me.PictureBox1)
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Left
@@ -107,6 +105,15 @@ Partial Class MainApp
         Me.TabPage3.Text = "Vultr App List"
         Me.TabPage3.UseVisualStyleBackColor = True
         '
+        'AppListTabs
+        '
+        Me.AppListTabs.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.AppListTabs.Location = New System.Drawing.Point(3, 33)
+        Me.AppListTabs.Name = "AppListTabs"
+        Me.AppListTabs.SelectedIndex = 0
+        Me.AppListTabs.Size = New System.Drawing.Size(818, 685)
+        Me.AppListTabs.TabIndex = 3
+        '
         'AppListRefresh
         '
         Me.AppListRefresh.AutoSize = True
@@ -121,15 +128,6 @@ Partial Class MainApp
         Me.AppListRefresh.Text = "Refresh Info"
         Me.AppListRefresh.UseVisualStyleBackColor = True
         '
-        'AppListTabs
-        '
-        Me.AppListTabs.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.AppListTabs.Location = New System.Drawing.Point(3, 33)
-        Me.AppListTabs.Name = "AppListTabs"
-        Me.AppListTabs.SelectedIndex = 0
-        Me.AppListTabs.Size = New System.Drawing.Size(818, 685)
-        Me.AppListTabs.TabIndex = 3
-        '
         'TabPage2
         '
         Me.TabPage2.Controls.Add(Me.prod_tabs)
@@ -142,6 +140,16 @@ Partial Class MainApp
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "Products"
         Me.TabPage2.UseVisualStyleBackColor = True
+        '
+        'prod_tabs
+        '
+        Me.prod_tabs.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.prod_tabs.Location = New System.Drawing.Point(4, 34)
+        Me.prod_tabs.Margin = New System.Windows.Forms.Padding(4)
+        Me.prod_tabs.Name = "prod_tabs"
+        Me.prod_tabs.SelectedIndex = 0
+        Me.prod_tabs.Size = New System.Drawing.Size(816, 683)
+        Me.prod_tabs.TabIndex = 3
         '
         'Products_Refresh
         '
@@ -156,16 +164,6 @@ Partial Class MainApp
         Me.Products_Refresh.TabIndex = 2
         Me.Products_Refresh.Text = "Refresh Info"
         Me.Products_Refresh.UseVisualStyleBackColor = True
-        '
-        'prod_tabs
-        '
-        Me.prod_tabs.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.prod_tabs.Location = New System.Drawing.Point(4, 34)
-        Me.prod_tabs.Margin = New System.Windows.Forms.Padding(4)
-        Me.prod_tabs.Name = "prod_tabs"
-        Me.prod_tabs.SelectedIndex = 0
-        Me.prod_tabs.Size = New System.Drawing.Size(816, 683)
-        Me.prod_tabs.TabIndex = 3
         '
         'TabPage1
         '
@@ -192,6 +190,138 @@ Partial Class MainApp
         Me.TabPage1.Text = "Account Info"
         Me.TabPage1.UseVisualStyleBackColor = True
         '
+        'LastPA
+        '
+        Me.LastPA.AutoSize = True
+        Me.LastPA.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!)
+        Me.LastPA.Location = New System.Drawing.Point(306, 185)
+        Me.LastPA.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.LastPA.Name = "LastPA"
+        Me.LastPA.Size = New System.Drawing.Size(21, 29)
+        Me.LastPA.TabIndex = 3
+        Me.LastPA.Text = "-"
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!)
+        Me.Label4.Location = New System.Drawing.Point(8, 185)
+        Me.Label4.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(275, 29)
+        Me.Label4.TabIndex = 3
+        Me.Label4.Text = "Last Payment Ammount: "
+        '
+        'LastPDate
+        '
+        Me.LastPDate.AutoSize = True
+        Me.LastPDate.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!)
+        Me.LastPDate.Location = New System.Drawing.Point(306, 155)
+        Me.LastPDate.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.LastPDate.Name = "LastPDate"
+        Me.LastPDate.Size = New System.Drawing.Size(21, 29)
+        Me.LastPDate.TabIndex = 3
+        Me.LastPDate.Text = "-"
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!)
+        Me.Label3.Location = New System.Drawing.Point(8, 155)
+        Me.Label3.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(224, 29)
+        Me.Label3.TabIndex = 3
+        Me.Label3.Text = "Last Payment Date: "
+        '
+        'charges_txt
+        '
+        Me.charges_txt.AutoSize = True
+        Me.charges_txt.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!)
+        Me.charges_txt.Location = New System.Drawing.Point(306, 126)
+        Me.charges_txt.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.charges_txt.Name = "charges_txt"
+        Me.charges_txt.Size = New System.Drawing.Size(58, 29)
+        Me.charges_txt.TabIndex = 3
+        Me.charges_txt.Text = "0.00"
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!)
+        Me.Label2.Location = New System.Drawing.Point(8, 126)
+        Me.Label2.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(212, 29)
+        Me.Label2.TabIndex = 3
+        Me.Label2.Text = "Pending Charges: "
+        '
+        'email_txt
+        '
+        Me.email_txt.AutoSize = True
+        Me.email_txt.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!)
+        Me.email_txt.Location = New System.Drawing.Point(306, 67)
+        Me.email_txt.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.email_txt.Name = "email_txt"
+        Me.email_txt.Size = New System.Drawing.Size(21, 29)
+        Me.email_txt.TabIndex = 3
+        Me.email_txt.Text = "-"
+        '
+        'name_info
+        '
+        Me.name_info.AutoSize = True
+        Me.name_info.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!)
+        Me.name_info.Location = New System.Drawing.Point(306, 38)
+        Me.name_info.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.name_info.Name = "name_info"
+        Me.name_info.Size = New System.Drawing.Size(21, 29)
+        Me.name_info.TabIndex = 3
+        Me.name_info.Text = "-"
+        '
+        'balance_txt
+        '
+        Me.balance_txt.AutoSize = True
+        Me.balance_txt.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!)
+        Me.balance_txt.Location = New System.Drawing.Point(306, 96)
+        Me.balance_txt.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.balance_txt.Name = "balance_txt"
+        Me.balance_txt.Size = New System.Drawing.Size(58, 29)
+        Me.balance_txt.TabIndex = 3
+        Me.balance_txt.Text = "0.00"
+        '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!)
+        Me.Label6.Location = New System.Drawing.Point(8, 67)
+        Me.Label6.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(250, 29)
+        Me.Label6.TabIndex = 3
+        Me.Label6.Text = "Account Holder EMail:"
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!)
+        Me.Label5.Location = New System.Drawing.Point(8, 38)
+        Me.Label5.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(254, 29)
+        Me.Label5.TabIndex = 3
+        Me.Label5.Text = "Account Holder Name:"
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!)
+        Me.Label1.Location = New System.Drawing.Point(8, 96)
+        Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(112, 29)
+        Me.Label1.TabIndex = 3
+        Me.Label1.Text = "Balance: "
+        '
         'Payments_Refresh
         '
         Me.Payments_Refresh.AutoSize = True
@@ -205,94 +335,6 @@ Partial Class MainApp
         Me.Payments_Refresh.Text = "Refresh Info"
         Me.Payments_Refresh.UseVisualStyleBackColor = True
         '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!)
-        Me.Label1.Location = New System.Drawing.Point(8, 96)
-        Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(112, 29)
-        Me.Label1.TabIndex = 3
-        Me.Label1.Text = "Balance: "
-        '
-        'balance_txt
-        '
-        Me.balance_txt.AutoSize = True
-        Me.balance_txt.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!)
-        Me.balance_txt.Location = New System.Drawing.Point(306, 96)
-        Me.balance_txt.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.balance_txt.Name = "balance_txt"
-        Me.balance_txt.Size = New System.Drawing.Size(58, 29)
-        Me.balance_txt.TabIndex = 3
-        Me.balance_txt.Text = "0.00"
-        '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!)
-        Me.Label2.Location = New System.Drawing.Point(8, 126)
-        Me.Label2.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(212, 29)
-        Me.Label2.TabIndex = 3
-        Me.Label2.Text = "Pending Charges: "
-        '
-        'charges_txt
-        '
-        Me.charges_txt.AutoSize = True
-        Me.charges_txt.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!)
-        Me.charges_txt.Location = New System.Drawing.Point(306, 126)
-        Me.charges_txt.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.charges_txt.Name = "charges_txt"
-        Me.charges_txt.Size = New System.Drawing.Size(58, 29)
-        Me.charges_txt.TabIndex = 3
-        Me.charges_txt.Text = "0.00"
-        '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!)
-        Me.Label3.Location = New System.Drawing.Point(8, 155)
-        Me.Label3.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(224, 29)
-        Me.Label3.TabIndex = 3
-        Me.Label3.Text = "Last Payment Date: "
-        '
-        'LastPDate
-        '
-        Me.LastPDate.AutoSize = True
-        Me.LastPDate.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!)
-        Me.LastPDate.Location = New System.Drawing.Point(306, 155)
-        Me.LastPDate.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.LastPDate.Name = "LastPDate"
-        Me.LastPDate.Size = New System.Drawing.Size(21, 29)
-        Me.LastPDate.TabIndex = 3
-        Me.LastPDate.Text = "-"
-        '
-        'Label4
-        '
-        Me.Label4.AutoSize = True
-        Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!)
-        Me.Label4.Location = New System.Drawing.Point(8, 185)
-        Me.Label4.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(275, 29)
-        Me.Label4.TabIndex = 3
-        Me.Label4.Text = "Last Payment Ammount: "
-        '
-        'LastPA
-        '
-        Me.LastPA.AutoSize = True
-        Me.LastPA.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!)
-        Me.LastPA.Location = New System.Drawing.Point(306, 185)
-        Me.LastPA.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.LastPA.Name = "LastPA"
-        Me.LastPA.Size = New System.Drawing.Size(21, 29)
-        Me.LastPA.TabIndex = 3
-        Me.LastPA.Text = "-"
-        '
         'VM_Tabs
         '
         Me.VM_Tabs.Controls.Add(Me.TabPage1)
@@ -305,64 +347,6 @@ Partial Class MainApp
         Me.VM_Tabs.SelectedIndex = 0
         Me.VM_Tabs.Size = New System.Drawing.Size(832, 750)
         Me.VM_Tabs.TabIndex = 1
-        '
-        'API_Test
-        '
-        Me.API_Test.AutoSize = True
-        Me.API_Test.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.API_Test.Dock = System.Windows.Forms.DockStyle.Top
-        Me.API_Test.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!)
-        Me.API_Test.Location = New System.Drawing.Point(0, 173)
-        Me.API_Test.Margin = New System.Windows.Forms.Padding(4)
-        Me.API_Test.Name = "API_Test"
-        Me.API_Test.Size = New System.Drawing.Size(133, 30)
-        Me.API_Test.TabIndex = 2
-        Me.API_Test.Text = "API Test"
-        Me.API_Test.UseVisualStyleBackColor = True
-        '
-        'Label5
-        '
-        Me.Label5.AutoSize = True
-        Me.Label5.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!)
-        Me.Label5.Location = New System.Drawing.Point(8, 38)
-        Me.Label5.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(254, 29)
-        Me.Label5.TabIndex = 3
-        Me.Label5.Text = "Account Holder Name:"
-        '
-        'name_info
-        '
-        Me.name_info.AutoSize = True
-        Me.name_info.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!)
-        Me.name_info.Location = New System.Drawing.Point(306, 38)
-        Me.name_info.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.name_info.Name = "name_info"
-        Me.name_info.Size = New System.Drawing.Size(21, 29)
-        Me.name_info.TabIndex = 3
-        Me.name_info.Text = "-"
-        '
-        'Label6
-        '
-        Me.Label6.AutoSize = True
-        Me.Label6.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!)
-        Me.Label6.Location = New System.Drawing.Point(8, 67)
-        Me.Label6.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(250, 29)
-        Me.Label6.TabIndex = 3
-        Me.Label6.Text = "Account Holder EMail:"
-        '
-        'email_txt
-        '
-        Me.email_txt.AutoSize = True
-        Me.email_txt.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!)
-        Me.email_txt.Location = New System.Drawing.Point(306, 67)
-        Me.email_txt.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.email_txt.Name = "email_txt"
-        Me.email_txt.Size = New System.Drawing.Size(21, 29)
-        Me.email_txt.TabIndex = 3
-        Me.email_txt.Text = "-"
         '
         'MainApp
         '
@@ -395,7 +379,6 @@ Partial Class MainApp
     Friend WithEvents Panel1 As Panel
     Friend WithEvents PictureBox1 As PictureBox
     Friend WithEvents LogIn_Btn As Button
-    Friend WithEvents API_Test As Button
     Friend WithEvents TabPage3 As TabPage
     Friend WithEvents AppListTabs As TabControl
     Friend WithEvents AppListRefresh As Button
