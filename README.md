@@ -7,6 +7,7 @@
 ## Current Features
 - Check Your Balance and Payment
 - Check Your KVMs
+- App List
 
 ## Future Plans
 - Backups Lists
@@ -19,7 +20,7 @@
 - Networking
 - Object Storage
 - Operating Systems
-- Planes
+- Plans
 - Regions
 - Reserved IP
 - Server Control Panel
