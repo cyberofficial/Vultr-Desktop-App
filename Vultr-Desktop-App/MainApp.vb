@@ -178,7 +178,6 @@ Public Class MainApp
         output = process.StandardOutput.ReadToEnd()
         ' Debug Purposes
         ' Clipboard.SetText(output)
-
         process.WaitForExit()
 
         Try
