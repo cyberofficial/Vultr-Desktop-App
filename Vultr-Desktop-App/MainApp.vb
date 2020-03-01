@@ -104,7 +104,7 @@ Public Class MainApp
         Try
             Dim Count As Integer
             Dim json = output
-            Dim reports = JsonConvert.DeserializeObject(Of Dictionary(Of String, ReportData))(json)
+            Dim reports = JsonConvert.DeserializeObject(Of Dictionary(Of String, ReportData_1))(json)
             For Each pair In reports
                 Dim NewTab As New TabPage
                 NewTab.Name = $"{pair.Key}"
@@ -159,9 +159,72 @@ Public Class MainApp
 
 
     End Sub
+
+    Private Sub AppListRefresh_Click(sender As Object, e As EventArgs) Handles AppListRefresh.Click
+
+        ' Grabs The products from the api
+
+        Dim output As String
+        Dim process As System.Diagnostics.Process = New System.Diagnostics.Process()
+        Dim startInfo As System.Diagnostics.ProcessStartInfo = New System.Diagnostics.ProcessStartInfo With {
+            .CreateNoWindow = True,
+            .UseShellExecute = False,
+            .RedirectStandardOutput = True,
+            .FileName = "CMD.exe",
+            .Arguments = "/c curl.exe --url https://api.vultr.com/v1/app/list"
+        }
+        process.StartInfo = startInfo
+        process.Start()
+        output = process.StandardOutput.ReadToEnd()
+        ' Debug Purposes
+        ' Clipboard.SetText(output)
+
+        process.WaitForExit()
+
+        Try
+            ' Clear the tab pages when you refresh
+            AppListTabs.TabPages.Clear()
+        Catch ex As Exception
+            MessageBox.Show("Final Error 1")
+        End Try
+
+
+        ' Export the json out put to readable formats
+        ' Creates new tabs for each product
+        Try
+            Dim Count As Integer
+            Dim json = output
+            Dim reports = JsonConvert.DeserializeObject(Of Dictionary(Of String, ReportData_1))(json)
+            For Each pair In reports
+                Dim NewTab As New TabPage
+                NewTab.Name = $"{pair.Key}"
+                NewTab.Text = NewTab.Name
+                Count += 1
+                AppListTabs.Controls.Add(NewTab)
+
+                Dim Data As New TextBox With {
+                    .[ReadOnly] = True,
+                    .Multiline = True,
+                    .Dock = DockStyle.Fill,
+                    .Font = New Font("Microsoft Sans Serif", 13),
+                    .ScrollBars = ScrollBars.Vertical
+                }
+                Dim fontName As FontFamily = Data.Font.FontFamily
+                Data.Text &= "OS Name: " & $"{pair.Value.name}"
+                Data.Text &= Environment.NewLine & "OS Short Name: " & $"{pair.Value.short_name}"
+                Data.Text &= Environment.NewLine & "Deploy Name: " & $"{pair.Value.deploy_name}"
+                Data.Text &= Environment.NewLine & "Surcharge Fees: " & $"$ {pair.Value.surcharge}"
+                NewTab.Controls.Add(Data)
+                AppListTabs.SelectedIndex = prod_tabs.TabCount - 1
+
+            Next
+        Catch ex As Exception
+            MessageBox.Show("Final Error 2")
+        End Try
+    End Sub
 End Class
 
-Public Class ReportData
+Public Class ReportData_1
     ' Class data for json data
 
     <JsonProperty("VM_ID")>
@@ -196,6 +259,10 @@ Public Class ReportData
     Public Property OSID As String
     Public Property APPID As String
     Public Property FIREWALLGROUPID As String
+    Public Property name As String
+    Public Property short_name As String
+    Public Property deploy_name As String
+    Public Property surcharge As String
 
     ' --- Storing for later use ---
     ' Dim json = output
